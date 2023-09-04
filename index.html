@@ -501,13 +501,14 @@ const audioContainer = document.querySelector('.audio-container');
 
 readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    const pdfEmbed = document.createElement('embed');
-    pdfEmbed.setAttribute('src', `surah_${index + 1}.pdf`);
-    pdfEmbed.setAttribute('width', '100%');
-    pdfEmbed.setAttribute('height', '500px');
+    const pdfObject = document.createElement('object');
+    pdfObject.setAttribute('data', `surah_${index + 1}.pdf`);
+    pdfObject.setAttribute('type', 'application/pdf');
+    pdfObject.setAttribute('width', '100%');
+    pdfObject.setAttribute('height', '500px');
     pdfContainer.innerHTML = ''; // Clear previous content
-    pdfContainer.appendChild(pdfEmbed);
-    audioContainer.innerHTML = '';
+    pdfContainer.appendChild(pdfObject);
+    audioContainer.innerHTML = ''; // Clear audio content
   });
 });
 
