@@ -499,18 +499,30 @@ const listenButtons = document.querySelectorAll('.listen-btn');
 const pdfContainer = document.querySelector('.pdf-container');
 const audioContainer = document.querySelector('.audio-container');
 
+const pdfContainer = document.getElementById('pdf-container'); // Replace 'pdf-container' with the actual ID of your PDF container
+const readButtons = document.querySelectorAll('.read-button'); // Replace 'read-button' with the actual class name of your buttons
+
 readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    const pdfObject = document.createElement('object');
-    pdfObject.setAttribute('data', `surah_${index + 1}.pdf`);
-    pdfObject.setAttribute('type', 'application/pdf');
-    pdfObject.setAttribute('width', '100%');
-    pdfObject.setAttribute('height', '500px');
-    pdfContainer.innerHTML = ''; // Clear previous content
-    pdfContainer.appendChild(pdfObject);
-    audioContainer.innerHTML = ''; // Clear audio content
+    // Create an iframe element
+    const pdfIframe = document.createElement('iframe');
+    pdfIframe.setAttribute('src', `surah_${index + 1}.pdf`);
+    pdfIframe.setAttribute('width', '100%');
+    pdfIframe.setAttribute('height', '500px');
+    pdfIframe.setAttribute('frameborder', '0'); // Remove iframe border
+
+    // Clear previous content in the PDF container
+    pdfContainer.innerHTML = '';
+
+    // Append the iframe to the PDF container
+    pdfContainer.appendChild(pdfIframe);
+
+    // Clear audio content (if needed)
+    const audioContainer = document.getElementById('audio-container'); // Replace 'audio-container' with the actual ID of your audio container
+    audioContainer.innerHTML = '';
   });
 });
+
 
 listenButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
