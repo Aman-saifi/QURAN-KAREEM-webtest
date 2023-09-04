@@ -110,9 +110,9 @@
       cursor: pointer;
     }
 
-    .jpg-container, .audio-container {
+    .img-container, .audio-container {
       margin-top: 20px;
-      jpg-align: center;
+      img-align: center;
     }
 
 
@@ -474,7 +474,7 @@
      <div class="button-group"> <button class="read-btn">Read</button> <button class="listen-btn">Listen</button> <!-- Repeat for all 114 Surahs --> 
      </div></li> 
    </ul> 
-   <div class="pdf-container"> <!-- PDF content for each surah will be displayed here --> 
+   <div class="img-container"> <!-- PDF content for each surah will be displayed here --> 
    </div> 
    <div class="audio-container"> <!-- Audio content for each surah will be played here --> 
     <script>
@@ -498,7 +498,7 @@
   });
   const readButtons = document.querySelectorAll('.read-btn');
 const listenButtons = document.querySelectorAll('.listen-btn');
-const pdfContainer = document.querySelector('.jpg-container');
+const pdfContainer = document.querySelector('.img-container');
 const audioContainer = document.querySelector('.audio-container');
 
 readButtons.forEach((button, index) => {
