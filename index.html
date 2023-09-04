@@ -110,9 +110,9 @@
       cursor: pointer;
     }
 
-    .pdf-container, .audio-container {
+    .jpg-container, .audio-container {
       margin-top: 20px;
-      text-align: center;
+      jpg-align: center;
     }
 
 
@@ -498,17 +498,17 @@
   });
   const readButtons = document.querySelectorAll('.read-btn');
 const listenButtons = document.querySelectorAll('.listen-btn');
-const pdfContainer = document.querySelector('.pdf-container');
+const pdfContainer = document.querySelector('.jpg-container');
 const audioContainer = document.querySelector('.audio-container');
 
 readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    const pdfEmbed = document.createElement('embed');
-    pdfEmbed.setAttribute('src', `surah_${index + 1}.pdf`);
-    pdfEmbed.setAttribute('width', '100%');
-    pdfEmbed.setAttribute('height', '500px');
+    const imgElement = document.createElement('img'); // Create an image element
+    imgElement.setAttribute('src', `surah_${index + 1}.jpg`); // Update the source to your JPG file
+    imgElement.setAttribute('width', '100%'); // Update width if needed
+    imgElement.setAttribute('height', '500px'); // Update height if needed
     pdfContainer.innerHTML = ''; // Clear previous content
-    pdfContainer.appendChild(pdfEmbed);
+    pdfContainer.appendChild(imgElement); // Append the image element to the container
     audioContainer.innerHTML = ''; // Clear audio content
   });
 });
