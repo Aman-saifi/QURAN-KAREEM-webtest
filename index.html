@@ -495,33 +495,44 @@
     });
   });
     const readButtons = document.querySelectorAll('.read-btn');
-    const listenButtons = document.querySelectorAll('.listen-btn');
-    const pdfContainer = document.querySelector('.pdf-container');
-    const audioContainer = document.querySelector('.audio-container');
-    readButtons.forEach((button, index) => {
+const listenButtons = document.querySelectorAll('.listen-btn');
+
+readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    const imgElement = document.createElement('img'); // Create an image element
-    imgElement.setAttribute('src', `surah_${index + 1}.jpg`); // Update the source to your JPG file
-    imgElement.setAttribute('width', '225px'); // Set the width to 9/16 of the desired height
-    imgElement.setAttribute('height', '400px'); // Set the desired height
-    pdfContainer.innerHTML = ''; // Clear previous content
-    pdfContainer.appendChild(imgElement); // Append the image element to the container
-    audioContainer.innerHTML = ''; // Clear audio content
+    const newWindow = window.open('', '_blank');
+    
+    if (newWindow) {
+      const imgElement = newWindow.document.createElement('img');
+      imgElement.setAttribute('src', `surah_${index + 1}.jpg`);
+      imgElement.setAttribute('width', '225px');
+      imgElement.setAttribute('height', '400px');
+      
+      newWindow.document.body.appendChild(imgElement);
+    } else {
+      alert('The popup window was blocked by the browser. Please allow popups for this site.');
+    }
   });
 });
 
+listenButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    const newWindow = window.open('', '_blank');
+    
+    if (newWindow) {
+      const audioElement = newWindow.document.createElement('audio');
+      audioElement.setAttribute('controls', 'true');
+      const sourceElement = newWindow.document.createElement('source');
+      sourceElement.setAttribute('src', `surah_${index + 1}.mp3`);
+      sourceElement.setAttribute('type', 'audio/mpeg');
+      
+      audioElement.appendChild(sourceElement);
+      newWindow.document.body.appendChild(audioElement);
+    } else {
+      alert('The popup window was blocked by the browser. Please allow popups for this site.');
+    }
+  });
+});
 
-    listenButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        audioContainer.innerHTML = `
-          <audio controls>
-            <source src="surah_${index + 1}.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-        `;
-        pdfContainer.innerHTML = '';
-      });
-    });
    </script> 
    </div> 
    <footer class="black-bg"> 
