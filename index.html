@@ -507,33 +507,17 @@ const listenButtons = document.querySelectorAll('.listen-btn');
 const pdfContainer = document.querySelector('.img-container');
 const audioContainer = document.querySelector('.audio-container');
 
-const readButtons = document.querySelectorAll('.read-btn');
-        const audioContainer = document.querySelector('.audio-container');
-        const pdfContainer = document.querySelector('.img-container');
-
-        readButtons.forEach((button) => {
-            button.addEventListener('click', async () => {
-                const folderName = button.getAttribute('data-folder');
-                const response = await fetch(`https://api.github.com/repos/username/1-AL-FATIHA-Images/contents/${folderName}`);
-                const data = await response.json();
-
-                if (data && Array.isArray(data)) {
-                    pdfContainer.innerHTML = ''; // Clear previous content
-                    audioContainer.innerHTML = ''; // Clear audio content
-
-                    data.forEach((item) => {
-                        if (item.type === 'file') {
-                            const imageUrl = item.download_url;
-                            const imgElement = document.createElement('img');
-                            imgElement.src = imageUrl;
-                            imgElement.style.maxWidth = '100%';
-                            imgElement.style.height = 'auto';
-                            pdfContainer.appendChild(imgElement);
-                        }
-                    });
-                }
-            });
-        });
+readButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    const imgElement = document.createElement('img'); // Create an image element
+    imgElement.setAttribute('src', `surah_${index + 1}.jpg`); // Update the source to your JPG file
+    imgElement.setAttribute('width', '100%'); // Update width if needed
+    imgElement.setAttribute('height', '500px'); // Update height if needed
+    pdfContainer.innerHTML = ''; // Clear previous content
+    pdfContainer.appendChild(imgElement); // Append the image element to the container
+    audioContainer.innerHTML = ''; // Clear audio content
+  });
+});
 
 listenButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
