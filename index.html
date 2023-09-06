@@ -502,12 +502,26 @@ readButtons.forEach((button, index) => {
     const newWindow = window.open('', '_blank');
     
     if (newWindow) {
-      const imgElement = newWindow.document.createElement('img');
+      const newWindowDocument = newWindow.document;
+
+      // Create a container div for centering
+      const containerDiv = newWindowDocument.createElement('div');
+      containerDiv.style.display = 'flex';
+      containerDiv.style.justifyContent = 'center';
+      containerDiv.style.alignItems = 'center';
+      containerDiv.style.height = '100vh'; // Make the container full viewport height
+
+      // Create an image element
+      const imgElement = newWindowDocument.createElement('img');
       imgElement.setAttribute('src', `surah_${index + 1}.jpg`);
       imgElement.setAttribute('width', '225px');
       imgElement.setAttribute('height', '400px');
-      
-      newWindow.document.body.appendChild(imgElement);
+
+      // Append the image element to the container
+      containerDiv.appendChild(imgElement);
+
+      // Append the container to the new window's body
+      newWindowDocument.body.appendChild(containerDiv);
     } else {
       alert('The popup window was blocked by the browser. Please allow popups for this site.');
     }
@@ -519,20 +533,35 @@ listenButtons.forEach((button, index) => {
     const newWindow = window.open('', '_blank');
     
     if (newWindow) {
-      const audioElement = newWindow.document.createElement('audio');
+      const newWindowDocument = newWindow.document;
+
+      // Create a container div for centering
+      const containerDiv = newWindowDocument.createElement('div');
+      containerDiv.style.display = 'flex';
+      containerDiv.style.justifyContent = 'center';
+      containerDiv.style.alignItems = 'center';
+      containerDiv.style.height = '100vh'; // Make the container full viewport height
+
+      // Create an audio element
+      const audioElement = newWindowDocument.createElement('audio');
       audioElement.setAttribute('controls', 'true');
-      const sourceElement = newWindow.document.createElement('source');
+      const sourceElement = newWindowDocument.createElement('source');
       sourceElement.setAttribute('src', `surah_${index + 1}.mp3`);
       sourceElement.setAttribute('type', 'audio/mpeg');
       
+      // Append the source element to the audio element
       audioElement.appendChild(sourceElement);
-      newWindow.document.body.appendChild(audioElement);
+
+      // Append the audio element to the container
+      containerDiv.appendChild(audioElement);
+
+      // Append the container to the new window's body
+      newWindowDocument.body.appendChild(containerDiv);
     } else {
       alert('The popup window was blocked by the browser. Please allow popups for this site.');
     }
   });
 });
-
    </script> 
    </div> 
    <footer class="black-bg"> 
