@@ -507,20 +507,17 @@ const listenButtons = document.querySelectorAll('.listen-btn');
 const pdfContainer = document.querySelector('.img-container');
 const audioContainer = document.querySelector('.audio-container');
 
-document.getElementById('displayButton').addEventListener('click', function () {
-            fetch('folder/') // 'folder/' ke badle me aap apne folder ka path specify kare
-                .then(response => response.json())
-                .then(data => {
-                    const imageContainer = document.getElementById('imageContainer');
-                    imageContainer.innerHTML = '';
-                    data.forEach(image => {
-                        const imgElement = document.createElement('img');
-                        imgElement.src = image;
-                        imageContainer.appendChild(imgElement);
-                    });
-                })
-                .catch(error => console.error(error));
-        });
+readButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    const imgElement = document.createElement('img'); // Create an image element
+    imgElement.setAttribute('src', `surah_${index + 1}.jpg`); // Update the source to your JPG file
+    imgElement.setAttribute('width', '100%'); // Update width if needed
+    imgElement.setAttribute('height', '500px'); // Update height if needed
+    pdfContainer.innerHTML = ''; // Clear previous content
+    pdfContainer.appendChild(imgElement); // Append the image element to the container
+    audioContainer.innerHTML = ''; // Clear audio content
+  });
+});
 
 listenButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
@@ -540,8 +537,9 @@ listenButtons.forEach((button, index) => {
    <footer class="black-bg"> 
     <div class="footer-details"> 
      <p style="margin: 0 auto; width: 75%;" width: 75%;"> This website is made for : Sadaqah-e-Jariyah</p> 
-     <p>Made by : AMAN SAIFI</p> <a href="https://www.instagram.com/abdullahsays.in/" target="_blank"> <img src="https://i.imgur.com/K6trBVzs.jpg" alt="Instagram" width="30" height="30"></a> <a href="https://youtube.com/@AMANSAIFIOFFICIAL?si=ZekPwLN_h6rex-ky"> <img src="https://i.imgur.com/3jlHkPM.jpg" alt="YouTube" width="30" height="30"></a> 
-     <p>Contact us: Phone: 9368606746 | DM us on Instagram : @abdullahsays.in</p> 
+     <p>Made by : AMAN SAIFI</p>
+     <p>Contact us: Phone: 9368606746 | DM us on Instagram : @abdullahsays.in</p>
+     <a href="https://www.instagram.com/abdullahsays.in/" target="_blank"> <img src="https://i.imgur.com/K6trBVzs.jpg" alt="Instagram" width="30" height="30"></a> <a href="https://youtube.com/@AMANSAIFIOFFICIAL?si=ZekPwLN_h6rex-ky"> <img src="https://i.imgur.com/3jlHkPM.jpg" alt="YouTube" width="30" height="30"></a>
      <p style="margin: 0 auto; width: 50%;" width: 50%;"> All rights reserved. © 2023 Sadaqah-e-Jariyah</p> 
     </div> 
    </footer> 
