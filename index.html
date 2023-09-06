@@ -510,14 +510,15 @@ const audioContainer = document.querySelector('.audio-container');
 readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
     const imgElement = document.createElement('img'); // Create an image element
-    imgElement.setAttribute('src', `surah_${index + 1}.jpg`); // Update the source to your JPG file
-    imgElement.setAttribute('width', '100%'); // Update width if needed
-    imgElement.setAttribute('height', '500px'); // Update height if needed
-    pdfContainer.innerHTML = ''; // Clear previous content
-    pdfContainer.appendChild(imgElement); // Append the image element to the container
-    audioContainer.innerHTML = ''; // Clear audio content
+    imgElement.setAttribute('src', `images/surah_${index + 1}.jpg`); // Set the source attribute of the image element
+    imgElement.setAttribute('width', '100%'); // Set the width attribute (you can adjust this if needed)
+    imgElement.setAttribute('height', '500px'); // Set the height attribute (you can adjust this if needed)
+    pdfContainer.innerHTML = ''; // Clear previous content inside the pdfContainer
+    pdfContainer.appendChild(imgElement); // Append the new image element to the pdfContainer
+    audioContainer.innerHTML = ''; // Clear any previous audio content inside the audioContainer
   });
 });
+
 
 listenButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
