@@ -514,8 +514,8 @@ readButtons.forEach((button, index) => {
       // Create an image element
       const imgElement = newWindowDocument.createElement('img');
       imgElement.setAttribute('src', `surah_${index + 1}.jpg`);
-      imgElement.setAttribute('width', '425px');
-      imgElement.setAttribute('height', '800px');
+      imgElement.setAttribute('width', '625px');
+      imgElement.setAttribute('height', '1000px');
 
       // Append the image element to the container
       containerDiv.appendChild(imgElement);
@@ -540,7 +540,7 @@ listenButtons.forEach((button, index) => {
       containerDiv.style.display = 'flex';
       containerDiv.style.justifyContent = 'center';
       containerDiv.style.alignItems = 'center';
-      containerDiv.style.height = '100vh'; // Make the container full viewport height
+      containerDiv.style.height = '300vh'; // Make the container full viewport height
 
       // Create an audio element
       const audioElement = newWindowDocument.createElement('audio');
