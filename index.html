@@ -109,11 +109,13 @@
       cursor: pointer;
     }
 
-    .pdf-container, .audio-container {
-      margin-top: 20px;
-      text-align: center;
-    }
-
+    .audio-container {
+         width: 300px;
+      }
+   
+width: 100%; /* Set the width to 100% to make it fill the container */
+         height: auto;
+   
     footer {
     background-color: #000000;
     color: #ffffff;
@@ -540,7 +542,7 @@ listenButtons.forEach((button, index) => {
       containerDiv.style.display = 'flex';
       containerDiv.style.justifyContent = 'center';
       containerDiv.style.alignItems = 'center';
-      containerDiv.style.height = '50vh'; // Make the container full viewport height
+      containerDiv.style.height = '10vh'; // Make the container full viewport height
 
       // Create an audio element
       const audioElement = newWindowDocument.createElement('audio');
