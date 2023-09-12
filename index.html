@@ -522,22 +522,6 @@
         pdfContainer.innerHTML = '';
       });
     });
-     // ... (previous JavaScript code)
-
-listenButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    const newWindow = window.open('', '_blank');
-    if (newWindow) {
-      const mp3Url = `surah_${index + 1}.mp3`;
-      const audio = document.createElement('audio');
-      audio.controls = true;
-      audio.src = mp3Url;
-      newWindow.document.body.appendChild(audio);
-    } else {
-      alert('Popup blocked. Please allow popups for this site and try again.');
-    }
-  });
-});
    </script> 
    </div> 
    <footer class="black-bg"> 
