@@ -112,9 +112,8 @@
     }
 
      .audio-container {
-      margin-top: -100px;
+      margin-top: 20px;
       text-align: center;
-      target="_blank"
     }
 
     footer {
@@ -503,26 +502,35 @@
     });
   });
     const readButtons = document.querySelectorAll('.read-btn');
-    const listenButtons = document.querySelectorAll('.listen-btn');
-    const pdfContainer = document.querySelector('.pdf-container');
-    const audioContainer = document.querySelector('.audio-container');
-    readButtons.forEach((button, index) => {
+const listenButtons = document.querySelectorAll('.listen-btn');
+const pdfContainer = document.querySelector('.pdf-container');
+const audioContainer = document.querySelector('.audio-container');
+
+readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
     audioContainer.innerHTML = ''; // Clear audio content
   });
 });
 
-    listenButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        audioContainer.innerHTML = `
-          <audio controls>
-            <source src="surah_${index + 1}.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-        `;
-        pdfContainer.innerHTML = '';
-      });
-    });
+listenButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    const audioHTML = `
+      <audio controls>
+        <source src="surah_${index + 1}.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    `;
+
+    // Open the audio in a new window
+    const newWindow = window.open('', '', 'width=400,height=200');
+    newWindow.document.body.innerHTML = audioHTML;
+
+    // Clear the audio and PDF containers
+    audioContainer.innerHTML = '';
+    pdfContainer.innerHTML = '';
+  });
+});
+
    </script> 
    </div> 
    <footer class="black-bg"> 
