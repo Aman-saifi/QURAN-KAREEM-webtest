@@ -498,22 +498,11 @@
     });
   });
      
- const readButtons = document.querySelectorAll('.read-btn');
-const listenButtons = document.querySelectorAll('.listen-btn');
-const pdfContainer = document.querySelector('.pdf-container');
-const audioContainer = document.querySelector('.audio-container');
-
-readButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    audioContainer.innerHTML = ''; // Clear audio content
-  });
-});
-
 listenButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
     const audioHTML = `
-      <div style="display: flex; align-items: center; justify-content: center; height: 90vh;">
-        <audio controls>
+      <div style="display: flex; align-items: center; justify-content: center; height: 400px; width: 80%;">
+        <audio controls style="width: 100%;">
           <source src="surah_${index + 1}.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
