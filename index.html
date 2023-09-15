@@ -498,23 +498,37 @@
     });
   });
      
+const listenButtons = document.querySelectorAll('.listen-btn');
+
 listenButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    const audioHTML = `
-      <div style="display: flex; align-items: center; justify-content: center; height: 400px; width: 80%;">
-        <audio controls style="width: 100%;">
-          <source src="surah_${index + 1}.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
+    const audioContainer = document.getElementById('audioContainer');
+    audioContainer.innerHTML = `
+      <audio controls>
+        <source src="surah_${index + 1}.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     `;
-   
-    const newWindow = window.open('', '', 'width=800,height=400');
-    newWindow.document.body.innerHTML = audioHTML;
-    audioContainer.innerHTML = '';
-    pdfContainer.innerHTML = '';
+
+    // Show the popup
+    const popup = document.getElementById('audioPopup');
+    popup.style.display = 'block';
   });
 });
+
+function closePopup() {
+  // Close the popup
+  const popup = document.getElementById('audioPopup');
+  popup.style.display = 'none';
+
+  // Stop the audio playback when closing the popup
+  const audioElement = document.querySelector('audio');
+  if (audioElement) {
+    audioElement.pause();
+    audioElement.currentTime = 0;
+  }
+}
+
 
    </script> 
    </div> 
