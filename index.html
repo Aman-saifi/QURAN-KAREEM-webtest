@@ -89,17 +89,15 @@
     }
 
     .read-btn {
-    padding: 10px 20px;
-    font-size: 14px;
-    background-color: #17a2b8;
-    color: #ffffff;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-right: 30px;
-    text-decoration: none; /* Remove text underline */
-}
-
+      padding: 10px 20px;
+      font-size: 14px;
+      background-color: #17a2b8;
+      color: #ffffff;
+      border: 1px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-right: 30px;
+    }
 
     .listen-btn {
       padding: 10px 20px;
@@ -110,9 +108,13 @@
       border-radius: 3px;
       cursor: pointer;
     }
-   
 
-   footer {
+    .pdf-container, .audio-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    footer {
     background-color: #000000;
     color: #ffffff;
     text-align: center;
@@ -130,14 +132,9 @@
     <li> <span>1. AL - FATIHA</span> 
      <div class="button-group"> <button class="read-btn">Read</button> <button class="listen-btn">Listen</button> 
      </div> </li> 
-     <li>
-      <span>2. AL - BAQARAH</span>
-      <div class="button-group">
-          <a href="https://drive.google.com/file/d/1TauZCF6jmm4Teg767MQrDG0o1F5u0z3T/view?usp=drivesdk" class="read-btn">Read</a>
-          <button class="listen-btn">Listen</button>
-      </div>
-  </li>
-   
+    <li> <span>2. AL - BAQARAH</span> 
+     <div class="button-group"> <button class="read-btn">Read</button> <button class="listen-btn">Listen</button> 
+     </div> </li> 
     <li> <span>3. AL - IMRAN</span> 
      <div class="button-group"> <button class="read-btn">Read</button> <button class="listen-btn">Listen</button> 
      </div> </li> 
@@ -497,48 +494,34 @@
       }
     });
   });
-
-   const readButtons = document.querySelectorAll('.read-btn');
-const listenButtons = document.querySelectorAll('.listen-btn');
-const pdfContainer = document.querySelector('.pdf-container');
-const audioContainer = document.querySelector('.audio-container');
-
-function openPopup() {
-  // Create a popup window
-  const popup = window.open('', 'popupWindow', 'width=600,height=400');
-
-  // Set the content of the popup window
-  popup.document.write(`
-    <html>
-      <head>
-        <title>Popup Window</title>
-      </head>
-      <body>
-        <audio controls>
-          <source src="surah_${index + 1}.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </body>
-    </html>
-  `);
-
-  // Optional: You can modify the styles or add more content to the popup window
-}
-
-readButtons.forEach((button, index) => {
+    const readButtons = document.querySelectorAll('.read-btn');
+    const listenButtons = document.querySelectorAll('.listen-btn');
+    const pdfContainer = document.querySelector('.pdf-container');
+    const audioContainer = document.querySelector('.audio-container');
+    readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
+    const imgElement = document.createElement('img'); // Create an image element
+    imgElement.setAttribute('src', `surah_${index + 1}.jpg`); // Update the source to your JPG file
+    imgElement.setAttribute('width', '100%'); // Update width if needed
+    imgElement.setAttribute('height', '500px'); // Update height if needed
+    pdfContainer.innerHTML = ''; // Clear previous content
+    pdfContainer.appendChild(imgElement); // Append the image element to the container
+    audioContainer.innerHTML = ''; // Clear audio content
+  });
+});
+
     listenButtons.forEach((button, index) => {
       button.addEventListener('click', () => {
-        // Call the function to open the popup window
-        openPopup();
-
-        // Clear the content of pdfContainer (if needed)
+        audioContainer.innerHTML = `
+          <audio controls>
+            <source src="surah_${index + 1}.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        `;
         pdfContainer.innerHTML = '';
       });
     });
-  });
-});
-    </script> 
+   </script> 
    </div> 
    <footer class="black-bg"> 
     <div class="footer-details"> 
