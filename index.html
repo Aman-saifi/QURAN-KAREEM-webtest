@@ -497,40 +497,48 @@
       }
     });
   });
-     
+
+   const readButtons = document.querySelectorAll('.read-btn');
 const listenButtons = document.querySelectorAll('.listen-btn');
+const pdfContainer = document.querySelector('.pdf-container');
+const audioContainer = document.querySelector('.audio-container');
 
-listenButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    const audioContainer = document.getElementById('audioContainer');
-    audioContainer.innerHTML = `
-      <audio controls>
-        <source src="surah_${index + 1}.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    `;
+function openPopup() {
+  // Create a popup window
+  const popup = window.open('', 'popupWindow', 'width=600,height=400');
 
-    // Show the popup
-    const popup = document.getElementById('audioPopup');
-    popup.style.display = 'block';
-  });
-});
+  // Set the content of the popup window
+  popup.document.write(`
+    <html>
+      <head>
+        <title>Popup Window</title>
+      </head>
+      <body>
+        <audio controls>
+          <source src="surah_${index + 1}.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </body>
+    </html>
+  `);
 
-function closePopup() {
-  // Close the popup
-  const popup = document.getElementById('audioPopup');
-  popup.style.display = 'none';
-
-  // Stop the audio playback when closing the popup
-  const audioElement = document.querySelector('audio');
-  if (audioElement) {
-    audioElement.pause();
-    audioElement.currentTime = 0;
-  }
+  // Optional: You can modify the styles or add more content to the popup window
 }
 
+readButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    listenButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        // Call the function to open the popup window
+        openPopup();
 
-   </script> 
+        // Clear the content of pdfContainer (if needed)
+        pdfContainer.innerHTML = '';
+      });
+    });
+  });
+});
+    </script> 
    </div> 
    <footer class="black-bg"> 
     <div class="footer-details"> 
