@@ -495,32 +495,38 @@
     });
   });
     const readButtons = document.querySelectorAll('.read-btn');
-    const listenButtons = document.querySelectorAll('.listen-btn');
-    const pdfContainer = document.querySelector('.pdf-container');
-    const audioContainer = document.querySelector('.audio-container');
-    readButtons.forEach((button, index) => {
+const listenButtons = document.querySelectorAll('.listen-btn');
+const pdfContainer = document.querySelector('.pdf-container');
+const audioContainer = document.querySelector('.audio-container');
+
+function openPopup() {
+  // Create a pop-up window
+  const popup = window.open('popup.html', 'Popup', 'width=400, height=400');
+  // You can customize the window features (width, height, etc.) as needed
+}
+
+readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    const imgElement = document.createElement('img'); // Create an image element
-    imgElement.setAttribute('src', `surah_${index + 1}.jpg`); // Update the source to your JPG file
-    imgElement.setAttribute('width', '100%'); // Update width if needed
-    imgElement.setAttribute('height', '500px'); // Update height if needed
-    pdfContainer.innerHTML = ''; // Clear previous content
-    pdfContainer.appendChild(imgElement); // Append the image element to the container
-    audioContainer.innerHTML = ''; // Clear audio content
+    // Open pop-up when read button is clicked
+    openPopup();
   });
 });
 
-    listenButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        audioContainer.innerHTML = `
-          <audio controls>
-            <source src="surah_${index + 1}.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-        `;
-        pdfContainer.innerHTML = '';
-      });
-    });
+listenButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    audioContainer.innerHTML = `
+      <audio controls>
+        <source src="surah_${index + 1}.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    `;
+    pdfContainer.innerHTML = '';
+
+    // Open pop-up when listen button is clicked
+    openPopup();
+  });
+});
+
    </script> 
    </div> 
    <footer class="black-bg"> 
