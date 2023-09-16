@@ -477,24 +477,7 @@
    <div class="audio-container"> <!-- Audio content for each surah will be played here --> 
     <script>
     // Get the search input element and the list of surahs
-  const searchTermInput = document.querySelector('.searchTerm');
-  const surahList = document.querySelectorAll('li');
-
-  // Function to filter and display surahs based on search input
-  searchTermInput.addEventListener('input', function () {
-    const searchTerm = searchTermInput.value.toLowerCase();
-
-    surahList.forEach((surah) => {
-      const surahName = surah.querySelector('span').textContent.toLowerCase();
-
-      if (surahName.includes(searchTerm)) {
-        surah.style.display = 'flex';
-      } else {
-        surah.style.display = 'none';
-      }
-    });
-  });
-    const readButtons = document.querySelectorAll('.read-btn');
+const readButtons = document.querySelectorAll('.read-btn');
 const listenButtons = document.querySelectorAll('.listen-btn');
 
 readButtons.forEach((button, index) => {
@@ -508,16 +491,26 @@ listenButtons.forEach((button, index) => {
     // Open a new pop-up window
     const popup = window.open('', '_blank', 'width=300,height=200');
 
+    // Create a container div to center the audio element
+    const container = popup.document.createElement('div');
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.height = '100%';
+
     // Create an audio element
-    const audio = document.createElement('audio');
+    const audio = popup.document.createElement('audio');
     audio.controls = true;
-    const source = document.createElement('source');
+    const source = popup.document.createElement('source');
     source.src = `surah_${index + 1}.mp3`;
     source.type = 'audio/mpeg';
     audio.appendChild(source);
 
-    // Append the audio element to the pop-up window
-    popup.document.body.appendChild(audio);
+    // Append the audio element to the container
+    container.appendChild(audio);
+
+    // Append the container to the pop-up window
+    popup.document.body.appendChild(container);
 
     // Add event listener to close the pop-up window when audio ends
     audio.addEventListener('ended', () => {
@@ -525,6 +518,7 @@ listenButtons.forEach((button, index) => {
     });
   });
 });
+
     </script> 
    </div> 
    <footer class="black-bg"> 
