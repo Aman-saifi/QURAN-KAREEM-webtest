@@ -495,27 +495,37 @@
     });
   });
     const readButtons = document.querySelectorAll('.read-btn');
-    const listenButtons = document.querySelectorAll('.listen-btn');
-    const pdfContainer = document.querySelector('.pdf-container');
-    const audioContainer = document.querySelector('.audio-container');
-    readButtons.forEach((button, index) => {
+const listenButtons = document.querySelectorAll('.listen-btn');
+
+readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    audioContainer.innerHTML = ''; // Clear audio content
+    // Add code to handle reading functionality
   });
 });
 
-    listenButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        audioContainer.innerHTML = `
-          <audio controls>
-            <source src="surah_${index + 1}.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-        `;
-        pdfContainer.innerHTML = '';
-      });
+listenButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    // Open a new pop-up window
+    const popup = window.open('', '_blank', 'width=300,height=200');
+
+    // Create an audio element
+    const audio = document.createElement('audio');
+    audio.controls = true;
+    const source = document.createElement('source');
+    source.src = `surah_${index + 1}.mp3`;
+    source.type = 'audio/mpeg';
+    audio.appendChild(source);
+
+    // Append the audio element to the pop-up window
+    popup.document.body.appendChild(audio);
+
+    // Add event listener to close the pop-up window when audio ends
+    audio.addEventListener('ended', () => {
+      popup.close();
     });
-   </script> 
+  });
+});
+    </script> 
    </div> 
    <footer class="black-bg"> 
     <div class="footer-details"> 
