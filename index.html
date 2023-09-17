@@ -489,8 +489,8 @@ readButtons.forEach((button, index) => {
 listenButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
     // Open a new pop-up window with desired size
-    const popupWidth = 400; // Set the desired width
-    const popupHeight = 300; // Set the desired height
+    const popupWidth = 100; // Set the desired width
+    const popupHeight = 100; // Set the desired height
     const popup = window.open('', '_blank', `width=${popupWidth},height=${popupHeight}`);
 
     // Create a container div to center the audio element
@@ -498,7 +498,7 @@ listenButtons.forEach((button, index) => {
     container.style.display = 'flex';
     container.style.justifyContent = 'center';
     container.style.alignItems = 'center';
-    container.style.height = '100%';
+    container.style.height = '80%';
 
     // Create an audio element and set its size
     const audio = popup.document.createElement('audio');
