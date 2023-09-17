@@ -471,7 +471,6 @@
    </div> 
    <div class="audio-container"> <!-- Audio content for each surah will be played here --> 
     <script>
-     
 const readButtons = document.querySelectorAll('.read-btn');
 const listenButtons = document.querySelectorAll('.listen-btn');
 
@@ -483,23 +482,19 @@ readButtons.forEach((button, index) => {
 
 listenButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    // Open a new pop-up window with desired size
-    const popupWidth = 80%; // Set the desired width
-    const popupHeight = 80%; // Set the desired height
-    const popup = window.open('', '_blank', `width=${popupWidth},height=${popupHeight}`);
+    // Open a new pop-up window
+    const popup = window.open('', '_blank', 'width=300,height=200');
 
     // Create a container div to center the audio element
     const container = popup.document.createElement('div');
     container.style.display = 'flex';
     container.style.justifyContent = 'center';
     container.style.alignItems = 'center';
-    container.style.height = '70%';
+    container.style.height = '100%';
 
-    // Create an audio element and set its size
+    // Create an audio element
     const audio = popup.document.createElement('audio');
     audio.controls = true;
-    audio.style.width = '50%'; // Set the desired width
-    audio.style.height = '200%'; // Set the desired height
     const source = popup.document.createElement('source');
     source.src = `surah_${index + 1}.mp3`;
     source.type = 'audio/mpeg';
@@ -517,8 +512,6 @@ listenButtons.forEach((button, index) => {
     });
   });
 });
-
-
     </script> 
    </div> 
    <footer class="black-bg"> 
