@@ -509,6 +509,7 @@ listenButtons.forEach((button, index) => {
     // Add event listener to close the pop-up window when audio ends
     audio.addEventListener('ended', () => {
       popup.close();
+     popup.document.body.style.zoom = '50%';
     });
   });
 });
