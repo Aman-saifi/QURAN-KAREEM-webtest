@@ -471,10 +471,19 @@
    </div> 
    <div class="audio-container"> <!-- Audio content for each surah will be played here --> 
     <script>
+const readButtons = document.querySelectorAll('.read-btn');
 const listenButtons = document.querySelectorAll('.listen-btn');
 
-    // Open a new pop-up window with 50% zoom
-    const popup = window.open('', '_blank', `width=${popupWidth},height=${popupHeight}`);
+readButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    // Add code to handle reading functionality
+  });
+});
+
+listenButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    // Open a new pop-up window
+    const popup = window.open('', '_blank', 'width=300,height=200');
 
     // Create a container div to center the audio element
     const container = popup.document.createElement('div');
