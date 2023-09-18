@@ -473,14 +473,6 @@
     <script>
 const listenButtons = document.querySelectorAll('.listen-btn');
 
-listenButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    // Calculate 50% of the screen width and height
-    const screenWidth = window.screen.width;
-    const screenHeight = window.screen.height;
-    const popupWidth = Math.floor(screenWidth * 0.5);
-    const popupHeight = Math.floor(screenHeight * 0.5);
-
     // Open a new pop-up window with 50% zoom
     const popup = window.open('', '_blank', `width=${popupWidth},height=${popupHeight}`);
 
