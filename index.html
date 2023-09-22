@@ -471,17 +471,29 @@
    </div> 
    <div class="audio-container"> <!-- Audio content for each surah will be played here --> 
     <script>
-const readButtons = document.querySelectorAll('.read-btn');
-const listenButtons = document.querySelectorAll('.listen-btn');
-
-readButtons.forEach((button, index) => {
+    const readButtons = document.querySelectorAll('.read-btn');
+    const listenButtons = document.querySelectorAll('.listen-btn');
+    const pdfContainer = document.querySelector('.pdf-container');
+    const audioContainer = document.querySelector('.audio-container');
+    readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
     // Add code to handle reading functionality
   });
 });
+function openPdfInPopup(pdfUrl) {
+  const width = 600; // Width of the pop-up window
+  const height = 800; // Height of the pop-up window
+  const left = (window.innerWidth - width) / 2; // Center horizontally
+  const top = (window.innerHeight - height) / 2; // Center vertically
 
-listenButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
+  const popupWindow = window.open(pdfUrl, '_blank', `width=${width},height=${height},left=${left},top=${top}`);
+  if (popupWindow) {
+    popupWindow.focus();
+  } else {
+    alert('Please allow pop-ups for this website.');
+ });
+});
+
     // Open a new pop-up window
     const popup = window.open('', '_blank', 'width=300,height=400');
 
@@ -512,29 +524,6 @@ listenButtons.forEach((button, index) => {
     });
   });
 });
-const readButtons = document.querySelectorAll('.read-btn');
-
-readButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    const pdfUrl = `surah_${index + 1}.pdf`;
-    openPdfInPopup(pdfUrl);
-  });
-});
-
-function openPdfInPopup(pdfUrl) {
-  const width = 600; // Width of the pop-up window
-  const height = 800; // Height of the pop-up window
-  const left = (window.innerWidth - width) / 2; // Center horizontally
-  const top = (window.innerHeight - height) / 2; // Center vertically
-
-  const popupWindow = window.open(pdfUrl, '_blank', `width=${width},height=${height},left=${left},top=${top}`);
-  if (popupWindow) {
-    popupWindow.focus();
-  } else {
-    alert('Please allow pop-ups for this website.');
-  }
-}
-
     </script> 
    </div> 
    <footer class="black-bg"> 
