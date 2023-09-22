@@ -478,13 +478,13 @@ readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
     const pdfUrl = `surah_${index + 1}.pdf`;
 
-    const iframeElement = document.createElement('iframe');
-    iframeElement.setAttribute('src', pdfUrl);
-    iframeElement.setAttribute('width', '100%');
-    iframeElement.setAttribute('height', '100%');
-
+var embedElement = document.createElement('embed');
+embedElement.setAttribute('src', pdfUrl);
+embedElement.setAttribute('width', '100%');
+embedElement.setAttribute('height', '100%');
+   
     const popupWindow = window.open('', 'popupWindow', 'width=800,height=600');
-    popupWindow.document.body.appendChild(iframeElement);
+    popupWindow.document.body.appendChild(embedElement);
   });
 });
      
