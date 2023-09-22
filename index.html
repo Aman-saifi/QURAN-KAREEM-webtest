@@ -512,6 +512,28 @@ listenButtons.forEach((button, index) => {
     });
   });
 });
+const readButtons = document.querySelectorAll('.read-btn');
+
+readButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    const pdfUrl = `surah_${index + 1}.pdf`;
+    openPdfInPopup(pdfUrl);
+  });
+});
+
+function openPdfInPopup(pdfUrl) {
+  const width = 600; // Width of the pop-up window
+  const height = 800; // Height of the pop-up window
+  const left = (window.innerWidth - width) / 2; // Center horizontally
+  const top = (window.innerHeight - height) / 2; // Center vertically
+
+  const popupWindow = window.open(pdfUrl, '_blank', `width=${width},height=${height},left=${left},top=${top}`);
+  if (popupWindow) {
+    popupWindow.focus();
+  } else {
+    alert('Please allow pop-ups for this website.');
+  }
+}
 
     </script> 
    </div> 
