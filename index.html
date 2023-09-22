@@ -470,61 +470,40 @@
    <div class="pdf-container"> <!-- PDF content for each surah will be displayed here --> 
    </div> 
    <div class="audio-container"> <!-- Audio content for each surah will be played here --> 
-    <script>
-    const readButtons = document.querySelectorAll('.read-btn');
-    const listenButtons = document.querySelectorAll('.listen-btn');
-    const pdfContainer = document.querySelector('.pdf-container');
-    const audioContainer = document.querySelector('.audio-container');
-    readButtons.forEach((button, index) => {
+ <script>
+const readButtons = document.querySelectorAll('.read-btn');
+const listenButtons = document.querySelectorAll('.listen-btn');
+
+readButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    // Add code to handle reading functionality
+    const pdfUrl = `surah_${index + 1}.pdf`;
+
+    const iframeElement = document.createElement('iframe');
+    iframeElement.setAttribute('src', pdfUrl);
+    iframeElement.setAttribute('width', '100%');
+    iframeElement.setAttribute('height', '100%');
+
+    const popupWindow = window.open('', 'popupWindow', 'width=800,height=600');
+    popupWindow.document.body.appendChild(iframeElement);
   });
 });
-function openPdfInPopup(pdfUrl) {
-  const width = 600; // Width of the pop-up window
-  const height = 800; // Height of the pop-up window
-  const left = (window.innerWidth - width) / 2; // Center horizontally
-  const top = (window.innerHeight - height) / 2; // Center vertically
+     
+listenButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    const audioElement = document.createElement('audio');
+    audioElement.setAttribute('controls', 'true');
 
-  const popupWindow = window.open(pdfUrl, '_blank', `width=${width},height=${height},left=${left},top=${top}`);
-  if (popupWindow) {
-    popupWindow.focus();
-  } else {
-    alert('Please allow pop-ups for this website.');
- });
-});
+    const sourceElement = document.createElement('source');
+    sourceElement.setAttribute('src', `surah_${index + 1}.mp3`);
+    sourceElement.setAttribute('type', 'audio/mpeg');
 
-    // Open a new pop-up window
-    const popup = window.open('', '_blank', 'width=300,height=400');
+    audioElement.appendChild(sourceElement);
 
-    // Create a container div to center the audio element
-    const container = popup.document.createElement('div');
-    container.style.display = 'flex';
-    container.style.justifyContent = 'center';
-    container.style.alignItems = 'center';
-    container.style.height = '50%';
-
-    // Create an audio element
-    const audio = popup.document.createElement('audio');
-    audio.controls = true;
-    const source = popup.document.createElement('source');
-    source.src = `surah_${index + 1}.mp3`;
-    source.type = 'audio/mpeg';
-    audio.appendChild(source);
-
-    // Append the audio element to the container
-    container.appendChild(audio);
-
-    // Append the container to the pop-up window
-    popup.document.body.appendChild(container);
-
-    // Add event listener to close the pop-up window when audio ends
-    audio.addEventListener('ended', () => {
-      popup.close();
-    });
+    const popupWindow = window.open('', 'popupWindow', 'width=400,height=200');
+    popupWindow.document.body.appendChild(audioElement);
   });
 });
-    </script> 
+</script> 
    </div> 
    <footer class="black-bg"> 
     <div class="footer-details"> 
